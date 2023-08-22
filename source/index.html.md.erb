@@ -1,0 +1,47 @@
+---
+title: Get started with the Document Checking Service team
+weight: 5.1
+last_reviewed_on: 2022-04-05
+review_in: 12 months
+---
+# Get started with the Document Checking Service team
+
+<%= warning_text('The DCS is no longer under active development.') %>
+
+Welcome to the Document Checking Service (DCS) team!
+
+## Check you have the right permissions
+
+Check your tech lead has set you up with [GitHub access](https://verify-team-manual.cloudapps.digital/documentation/welcome/accounts.html#github) and has added you to the following GitHub teams:
+
+- verify-tech-team-dcs
+- verify-tech-team-core
+- verify-tech-team-approvers
+- verify-dcs-docs
+
+Once you have formally received [Security Check (SC) or higher security vetting](https://www.gov.uk/government/publications/united-kingdom-security-vetting-clearance-levels/national-security-vetting-clearance-levels#security-check-sc), you can be added to [gds-trusted-developers]. Anyone who is already a Trusted Developer can raise a Pull Request to add you.
+
+## Get access to the team drive
+
+We store documents in a subfolder (currently [Document Checking Service 2020/21](https://drive.google.com/drive/folders/1X70fuVfb-ZmzbWU-9SLPFx4ZmDUPHDSK)) of the [Verify missions](https://drive.google.com/drive/folders/0ACS1et5frci9Uk9PVA) folder on Google Drive - make sure you have access to this.
+
+## Setup your development environment
+
+You should:
+
+- clone the main DCS codebase, [alphagov/doc-checking]
+- run `brew bundle` in the repo root to install required dependencies.
+- enable `pre-commit` for the DCS repo by running `pre-commit install`
+- check that `pre-commit` works by running `pre-commit run --all-files`
+- check that you can run all the DCS tests by running `./pre-commit.sh`
+
+Other repos that you should clone are:
+
+- [dcs-service-manual](https://github.com/alphagov/dcs-service-manual) - this documentation
+- [gds-trusted-developers] - permissions to merge DCS code and administer its deployments
+- [verify-keystore] - GPG-encrypted store of private keys used in Verify projects
+- [verify-pki-certs] - certificates signed and issued by the Verify public key infrastructure
+- [verify-terraform](https://github.com/alphagov/verify-terraform) - terraform configuration for Verify services
+- [verify-utils-libs](https://github.com/alphagov/verify-utils-libs) - shared Java library with common utilities
+
+<%= partial "partials/links" %>
