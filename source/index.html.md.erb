@@ -6,8 +6,6 @@ review_in: 12 months
 ---
 # Get started with the Document Checking Service team
 
-<%= warning_text('The DCS is no longer under active development.') %>
-
 Welcome to the Document Checking Service (DCS) team!
 
 ## Check you have the right permissions
@@ -34,14 +32,3 @@ You should:
 - enable `pre-commit` for the DCS repo by running `pre-commit install`
 - check that `pre-commit` works by running `pre-commit run --all-files`
 - check that you can run all the DCS tests by running `./pre-commit.sh`
-
-Other repos that you should clone are:
-
-- [dcs-service-manual](https://github.com/alphagov/dcs-service-manual) - this documentation
-- [gds-trusted-developers] - permissions to merge DCS code and administer its deployments
-- [verify-keystore] - GPG-encrypted store of private keys used in Verify projects
-- [verify-pki-certs] - certificates signed and issued by the Verify public key infrastructure
-- [verify-terraform](https://github.com/alphagov/verify-terraform) - terraform configuration for Verify services
-- [verify-utils-libs](https://github.com/alphagov/verify-utils-libs) - shared Java library with common utilities
-
-<%= partial "partials/links" %>
