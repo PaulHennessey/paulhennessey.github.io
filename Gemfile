@@ -1,5 +1,3 @@
-# If you do not have OpenSSL installed, change
-# the following line to use 'http://'
 source 'https://rubygems.org'
 
 # For faster file watcher updates on Windows:
@@ -9,7 +7,10 @@ gem 'wdm', '~> 0.1.0', platforms: [:mswin, :mingw]
 gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby]
 
 # Include the tech docs gem
-gem 'govuk_tech_docs'
+gem 'govuk_tech_docs', "~> 3.4"
 
-# Include linter to check for dead internal links
-gem 'html-proofer', '~> 3.19.4'
+# The search functionality requires the `middleman-search` gem
+gem 'middleman-search-gds', git: 'https://github.com/alphagov/middleman-search.git'
+
+# Webrick required for running a local server in tests
+gem 'webrick', "~> 1.8"
