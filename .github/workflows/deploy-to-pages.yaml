@@ -4,7 +4,7 @@ on:
     branches:
       - main
 
-permissions:
+permissions: # Setting these permissions at the top level as we are here applies them to all jobs in the workflow
   contents: read
   pages: write
   id-token: write
@@ -14,24 +14,23 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  build:
+    uses: ./.github/workflows/test.yaml
+    with:
+      upload-artifact: true
+
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f # v3.4.0
-    - name: Setup Ruby and install gems
-      uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1 # v1.144.2
+    - name: Download build artifact
+      uses: actions/download-artifact@9782bd6a9848b53b110e712e20e42d89988822b7
       with:
-        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Build middleman site
-      run: bundle exec middleman build
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@253fd476ed429e83b7aae64a92a75b4ceb1a17cf # v1.0.7
-      with:
-        path: 'build'
+        name: build
+        path: build
+
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@73e62e651178eeba977de2dc9f4c7645b3d01015 # v2.0.0
