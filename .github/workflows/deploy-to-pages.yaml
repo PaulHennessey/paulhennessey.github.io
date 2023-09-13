@@ -15,11 +15,12 @@ concurrency:
 
 jobs:
   build:
-    uses: ./.github/workflows/test.yaml
+    uses: ./.github/workflows/build.yaml
     with:
       upload-artifact: true
 
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
