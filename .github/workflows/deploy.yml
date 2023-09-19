@@ -39,7 +39,7 @@ jobs:
       uses: actions/upload-pages-artifact@v2
     # if: ${{ inputs.upload-artifact }}
       with:
-          path: '.'
+          path: 'build'
           
   deploy:
     needs: build
