@@ -1,0 +1,11 @@
+# name: Call build and deploy workflows
+# on:
+#     pull_request:
+#         branches:
+#             - main
+               
+# jobs:
+#     call-build-workflow:
+#         uses: ./.github/workflows/build.yaml
+#     call-deploy-workflow:
+#         uses: ./.github/workflows/deploy-to-pages.yaml      
