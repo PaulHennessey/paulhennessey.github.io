@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
+    - uses: actions/checkout@v3
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@09c10210cc6e998d842ce8433cd9d245933cd797
@@ -36,12 +36,10 @@ jobs:
     # Share data between the build and deploy jobs so we don't need to run `npm run build` again on deploy
     # Upload the deploy folder as an artifact so it can be downloaded and used in the deploy job
     - name: Upload artifact
-      uses: actions/upload-artifact@83fd05a356d7e2593de66fc9913b3002723633cb
+      uses: actions/upload-pages-artifact@v2
     # if: ${{ inputs.upload-artifact }}
       with:
-          name: build
-          path: build/**
-          retention-days: 1
+          path: '.'
           
   deploy:
     needs: build
@@ -50,12 +48,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-    - name: Download build artifact
-      uses: actions/download-artifact@9782bd6a9848b53b110e712e20e42d89988822b7
-      with:
-        name: build
-        path: build
-
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@73e62e651178eeba977de2dc9f4c7645b3d01015 # v2.0.0
+      uses: actions/deploy-pages@v2
