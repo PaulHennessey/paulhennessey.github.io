@@ -28,10 +28,10 @@ jobs:
       run: |
         bundle exec middleman build
 
-    # Share data between the build and deploy jobs so we don't need to run `npm run build` again on deploy
-    # Upload the deploy folder as an artifact so it can be downloaded and used in the deploy job
     - name: Upload artifact
       uses: actions/upload-artifact@83fd05a356d7e2593de66fc9913b3002723633cb
-    # if: ${{ inputs.upload-artifact }}
       with:
-          path: 'build'
+        name: build-artifact
+        path: build/**
+        retention-days: 1
+
