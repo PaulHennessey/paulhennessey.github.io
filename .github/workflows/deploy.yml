@@ -15,31 +15,9 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@09c10210cc6e998d842ce8433cd9d245933cd797
-      with:
-        bundler-cache: true
-
-    - name: Set up Node
-      uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516
-      with:
-        node-version: '12'
-
-    - name: Build and test
-      run: |
-        bundle exec middleman build
-
-    # Share data between the build and deploy jobs so we don't need to run `npm run build` again on deploy
-    # Upload the deploy folder as an artifact so it can be downloaded and used in the deploy job
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
-    # if: ${{ inputs.upload-artifact }}
-      with:
-          path: 'build'
+    uses: ./.github/workflows/build.yaml
+    with:
+      upload-artifact: true
           
   deploy:
     needs: build
