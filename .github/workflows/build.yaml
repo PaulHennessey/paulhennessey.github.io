@@ -2,11 +2,6 @@ name: Build and test
 
 on:
   workflow_call:
-    inputs:
-      upload-artifact:
-        default: false
-        required: false
-        type: boolean
 
 jobs:
   build:
